@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .weibo {
+            width: 600px;
+            border: 1px solid #ccc;
+
+            margin: 100px auto;
+            padding: 10px;
+
+        }
+
+        .weibo-text {
+            width: 590px;
+            height: 140px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+        }
+
+        .weibo-text:focus {
+            border-color: #f60;
+        }
+
+        .weibo-btn {
+            width: 80px;
+            height: 30px;
+            background-color: #f90;
+            color: #fff;
+            border: 0 none;
+            margin-top: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            outline: 0 none;
+        }
+
+        .weibo-list {
+            padding-top: 10px;
+        }
+
+        .weibo-list li {
+            font-size: 14px;
+            line-height: 30px;
+            border-bottom: 1px dotted #ccc;
+            overflow: hidden;
+        }
+
+        .weibo-list li p {
+            float: left;
+        }
+
+        .weibo-list li span {
+            float: right;
+            cursor: pointer;
+        }
+
+        .weibo-list li input {
+            height: 24px;
+            line-height: 24px;
+            width: 300px;
+            font-size: 14px;
+            border: 0 none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weibo">
+        <textarea class="weibo-text"></textarea>
+        <input class="weibo-btn" value="发布" type="button">
+        <ul class="weibo-list">
+            <li>
+                <p>快来收了这九款用上就停不下来的应用吧！！</p>
+                <span>删除</span>
+            </li>
+            <li>
+                <p>超级详细的云南大理自助游攻略</p>
+                <span>删除</span>
+            </li>
+            <li>
+                <p>外国最近很火的舞蹈，舒服简单自然，太棒了！</p>
+                <span>删除</span>
+            </li>
+        </ul>
+</body>
+<script>
+    var btn = document.querySelector('.weibo-btn');
+    var text = document.querySelector('.weibo-text');
+    var ul = document.querySelector('.weibo-list');
+    btn.onclick = function () {
+        let li = document.createElement('li');
+        let val = text.value;
+        li.innerHTML = '<p>' + val + '</p><span>删除</span>';
+        ul.insertBefore(li, ul.children[0]);
+        text.value = '';
+        // dels();
+    }
+
+    /* function dels() {
+        var spans = document.querySelectorAll('span');
+        var lis = document.querySelectorAll('li');
+        for (var i = 0; i < spans.length; i++) {
+            spans[i].onclick = function () {
+                ul.removeChild(this.parentNode);
+            }
+        }
+    }
+    dels(); */
+    /* ul.onclick = function (e) {
+        if (e.target.nodeName === 'SPAN') {
+            this.removeChild(e.target.parentNode);
+        }
+    } */
+    /* ul.addEventListener('click', function (e) {
+        if (e.target.nodeName === 'SPAN') {
+            this.removeChild(e.target.parentNode);
+        }
+    }); */
+
+    text.onkeydown = function (e) {
+        if (e.keyCode === 13 && e.Key) {
+            btn.click();
+        }
+    }
+    console.log();
+
+</script>
+
+</html>
