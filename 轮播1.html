@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .box {
+            width: 730px;
+            height: 454px;
+            padding: 8px;
+            border: 1px solid green;
+            margin: 100px auto;
+        }
+
+        .inner {
+            position: relative;
+            overflow: hidden;
+            height: 454px;
+        }
+
+        #imglist {
+            width: 700%;
+            position: absolute;
+            left: 0;
+            transition: left 300ms linear;
+        }
+
+        li {
+            float: left;
+        }
+
+        .list {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -85px;
+        }
+
+        .list i {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #333;
+            float: left;
+            font-style: normal;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: center;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .list i:last-child {
+            margin-right: 0;
+        }
+
+        .list i.current {
+            background-color: skyblue;
+            color: #fff;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            margin-top: -30px;
+        }
+
+        .arrow-left,
+        .arrow-right {
+            width: 30px;
+            height: 60px;
+            position: absolute;
+            font: 20px/60px "consolas";
+            color: #fff;
+            background-color: rgba(0, 0, 0, .3);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .arrow-right {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="inner" id="inner">
+            <ul id="imglist">
+                <li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/6.jpg" alt=""></a></li>
+            </ul>
+            <div class="list">
+                <i class="current">1</i>
+                <i>2</i>
+                <i>3</i>
+                <i>4</i>
+                <i>5</i>
+                <i>6</i>
+            </div>
+            <div class="arrow">
+                <span class="arrow-left">&lt;</span>
+                <span class="arrow-right">&gt;</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let is = document.querySelectorAll('i');
+    let ul = document.querySelector('#imglist');
+    let left = document.querySelector('.arrow-left');
+    let right = document.querySelector('.arrow-right');
+    // let lis = document.querySelectorAll('li');
+    let imgWidth = document.querySelector('.inner').offsetWidth;
+    /* is.forEach(function (e, i) {
+        e.onmouseover = function () {
+            is.forEach(function (e) {
+                e.classList.remove('current');
+            })
+            e.classList.add('current');
+            lis.forEach(function (e,i) {
+                e.classList.
+            })
+        }
+    })
+    li里面不是显示与隐藏而且没有属性所以不能用tab栏方法（个人认为）*/
+    // 先做小圆点的定位
+    is.forEach(function (e, i) {
+        e.onmouseover = function () {
+            is.forEach(function (e) {
+                e.classList.remove('current');
+            })
+            e.classList.add('current');
+            // ul的宽度左移多少
+            ul.style.left = imgWidth * i * (-1) + 'px';
+        }
+    });
+    // 然后开始做箭头的的点击，建议先做右边的箭头，犹豫顺向思维习惯看图也是向右下一张往左走；
+    // 首先定义第一张图片为0的索引
+    let index = 0;
+    right.onclick = right_o;
+    function right_o() {
+        if (index === ul.children.length - 1) {
+            index = 0;
+            ul.style.left = 0;
+        } else {
+            index++;
+            ul.style.left = imgWidth * index * (-1) + 'px';
+        }
+
+        for (let i = 0; i < is.length; i++) {
+            is[i].classList.remove('current');
+        }
+        is[index].classList.add('current');
+    }
+
+    // 点击左边可以从右边第一张开始考虑，因为一开始index=0；所以先让它到最后一幅图网前走
+    left.onclick = function () {
+        if (index === 0) {
+            index = ul.children.length - 1;
+            ul.style.left = imgWidth * index * (-1) + 'px';
+            // ul.style.right=0;无效可能是因为盒子大小原因已经固定大小，所以right=0就是第一张图片的位置
+        } else {
+            index--;
+            ul.style.left = imgWidth * index * (-1) + 'px';
+        }
+        // 想谁有效果就找谁，想跟别人一起就要用别人的东西（索引）
+        for (let i = 0; i < is.length; i++) {
+            is[i].classList.remove('current');
+        }
+        is[index].classList.add('current');
+    }
+
+
+    let auto = setInterval(function () {
+        // 最好用函数调用啦，因为用注册会每一次都会注册一次的嘛
+        right_o();
+    }, 2000)
+
+    // 
+    ul.parentNode.onmouseover = function () {
+        clearInterval(auto);
+    }
+
+    ul.parentNode.onmouseout = function () {
+        // 最好用回原来的自动播放的效果，重新定义会乱来就好像存在两个自动，而且不要一个用on注册，一个用'click';效果也会不同
+        auto = setInterval(function () {
+            right_o();
+        }, 2000)
+    }
+</script>
+
+</html>
