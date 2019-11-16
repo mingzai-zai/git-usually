@@ -80,8 +80,11 @@
 
 <script>
     let small = document.querySelector('.small');
+    let img = small.querySelector('img');
     let mask = document.querySelector('.mask');
     let big = document.querySelector('.big');
+    let img1 = big.querySelector('img');
+    let box = document.querySelector('.box');
     small.onmouseover = function () {
         mask.style.display = 'block';
         big.style.display = 'block';
@@ -89,6 +92,18 @@
     small.onmouseout = function () {
         mask.style.display = 'none';
         big.style.display = 'none';
+    }
+    small.onmousemove = function (e) {
+        let x = e.pageX;
+        let y = e.pageY;
+        x = x - mask.offsetWidth / 2 - box.offsetLeft;
+        y = y - mask.offsetHeight / 2 - box.offsetTop;
+        x = x <= 0 ? 0 : x;
+        y = y <= 0 ? 0 : y;
+        x = x > box.offsetWidth - mask.offsetWidth ? box.offsetWidth - mask.offsetWidth : x;
+        y = y > box.offsetHeight - mask.offsetHeight ? box.offsetHeight - mask.offsetHeight : y;
+        mask.style.left = x + 'px';
+        mask.style.top = y + 'px';
     }
 </script>
 
