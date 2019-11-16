@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .big {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+
+        .mask {
+            width: 175px;
+            height: 175px;
+            background: rgba(255, 255, 0, 0.4);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            /* 把鼠标指针换成移动图标 */
+            cursor: move;
+            display: none;
+        }
+
+        .small {
+            position: relative;
+            height: 350px;
+            width: 350px;
+        }
+
+        .active .mask,
+        .active .big {
+            display: block;
+        }
+
+        .big img {
+            /* 相对定位：相对自己原本的位置定位，原来的位置保留的 */
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 整个大盒子 -->
+    <div class="box">
+        <div class="small">
+            <!--小图-->
+            <img alt="" src="images1/s.jpg" width="350" />
+            <!-- 遮挡层,黄色的小方块 -->
+            <div class="mask"></div>
+        </div>
+        <!--大层-->
+        <div class="big">
+            <!--大图-->
+            <img alt="" class="big-img" src="images1/big.jpg" width="800" />
+        </div>
+    </div>
+</body>
+
+<script>
+
+</script>
+
+</html>
