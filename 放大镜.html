@@ -79,7 +79,17 @@
 </body>
 
 <script>
-
+    let small = document.querySelector('.small');
+    let mask = document.querySelector('.mask');
+    let big = document.querySelector('.big');
+    small.onmouseover = function () {
+        mask.style.display = 'block';
+        big.style.display = 'block';
+    }
+    small.onmouseout = function () {
+        mask.style.display = 'none';
+        big.style.display = 'none';
+    }
 </script>
 
 </html>
