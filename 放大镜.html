@@ -104,6 +104,12 @@
         y = y > box.offsetHeight - mask.offsetHeight ? box.offsetHeight - mask.offsetHeight : y;
         mask.style.left = x + 'px';
         mask.style.top = y + 'px';
+
+
+        let x1 = img1.offsetHeight - big.offsetHeight;
+        let y1 = img1.offsetWidth - big.offsetWidth;
+        img1.style.left = -x1 * x / (small.offsetWidth - mask.offsetWidth) + 'px';
+        img1.style.top = -y1 * y / (small.offsetHeight - mask.offsetHeight) + 'px';
     }
 </script>
 
