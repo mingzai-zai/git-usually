@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj = {
+        // 把每一个东东存在数组里面
+        cun: function (key, fn) {
+            if (!this[key]) {
+                this[key] = [];
+            }
+            this[key].push(fn);
+        },
+        fa: function (key) {
+            for (let i = 0; i < this[key].length; i++) {
+                this[key][i]();
+            }
+        }
+    }
+    obj.cun('shuju', function () {
+        console.log(123);
+    })
+    obj.cun('shuju', fn1)
+    function fn1() {
+        console.log(1234);
+    }
+    obj.fa('shuju');
+</script>
+
+</html>
