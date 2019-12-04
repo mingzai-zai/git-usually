@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" enctype="application/x-www-form-urlencoded"></form>
+</body>
+<script src="../../static/js/jquery.js"></script>
+<script>
+    // type, url, data, success
+    /* function ajax(obj) {
+        obj = obj || {};
+        obj.url = obj.url || '';
+        obj.type = obj.type || 'get';
+        obj.data = obj.data || {};
+        let xhr = new XMLHttpRequest();
+        if (obj.type.toLowerCase() === 'get') {
+            obj.url += '?' + obj.data;
+        }
+        let arr = [];
+        for (let key in obj.data) {
+            arr.push(`${key}=${obj.data[key]}`)
+        }
+        obj.data = arr.join('&');
+        xhr.open(obj.type, obj.url);
+        if (obj.type.toLowerCase() === 'post') {
+            xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded")
+            xhr.send(obj.data);
+        } else {
+            xhr.send();
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                let res = xhr.responseText;
+                if (xhr.getResponseHeader('Content-Type').indexOf('json') !== -1) {
+                    res = JSON.parse(res);
+                }
+                obj.success && obj.success(res)
+            }
+        }
+    } */
+
+    /* ajax({
+        url: 'http://127.0.0.1:8080/doRegister',
+        type: 'post',
+        data: {
+            userName: '666',
+            password: '666',
+            phone: '666',
+        },
+        success: function (res) {
+            console.log(res);
+        }
+    }) */
+
+    /* function ajax(obj) {
+        obj = obj || {};
+        obj.url = obj.url || '';
+        obj.type = obj.type || 'get';
+        obj.data = obj.data || {};
+        let arr = [];
+        for (let key in obj.data) {
+            arr.push(`${key}=${obj.data[key]}`);
+        }
+        obj.data = arr.join('&');
+        if (obj.type.toLowerCase() === 'get') {
+            obj.url += '?' + obj.data;
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open(obj.type, obj.url);
+        if (obj.type.toLowerCase() === 'post') {
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(obj.data);
+        } else {
+            xhr.send();
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                let res = xhr.responseText;
+                if (xhr.getResponseHeader('Content-Type').indexOf('json') !== -1) {
+                    res = JSON.parse(res);
+                }
+                obj.success && obj.success(res);
+            }
+        }
+
+    }
+    ajax({
+        url: 'http://127.0.0.1:8080/doRegister',
+        type: 'post',
+        data: {
+            userName: '6667',
+            password: '6667',
+            phone: '6667',
+        },
+        success: function (res) {
+            console.log(res);
+        }
+    }) */
+    function ajax(obj) {
+        obj = obj || {};
+        obj.type = obj.type || 'get';
+        obj.url = obj.url || '';
+        obj.data = obj.data || {};
+        let arr = [];
+        for (let key in obj.data) {
+            arr.push(`${key}=${obj.data[key]}`)
+        }
+        obj.data = arr.join('&');
+        if (obj.type.toLowerCase() === 'get') {
+            obj.url += '?' + obj.data;
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open(obj.type, obj.url);
+        if (obj.type.toLowerCase() === 'post') {
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(obj.data);
+        } else {
+            xhr.send();
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                let res = xhr.responseText;
+                if (xhr.getResponseHeader('Content-Type').indexOf('json') !== -1) {
+                    res = JSON.parse(res);
+                }
+                obj.success && obj.success(res);
+            }
+
+        }
+
+    }
+    ajax({
+        url: 'http://127.0.0.1:8080/doRegister',
+        type: 'post',
+        data: {
+            userName: '666777',
+            password: '666777',
+            phone: '666777',
+        },
+        success: function (res) {
+            console.log(res);
+        }
+    })
+</script>
+
+</html>
